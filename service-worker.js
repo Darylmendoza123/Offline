@@ -1,8 +1,8 @@
 const CACHE_NAME = 'mi-pwa-cache-v1';  
 const urlToCache = [  
   './',  
-  '../index.html',  
-  '../app.js',  
+  './index.html',  
+  './app.js',  
   'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'  
 ];  
 
@@ -14,6 +14,9 @@ self.addEventListener('install', event => {
       console.log('Abriendo caché');  
       return cache.addAll(urlToCache);  
     })  
+    .catch(error => {
+      console.error('Error al cachear archivos:', error);
+    })
   );  
 });  
 
@@ -30,4 +33,4 @@ self.addEventListener('fetch', event => {
       return response || fetch(event.request);  
     })  
   );  
-});  
+});
