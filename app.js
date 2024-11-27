@@ -1,12 +1,14 @@
 console.log("Script app.js cargado"); // Verificación de que el archivo se está cargando
 
 const API_URL = 'https://api.gameofthronesquotes.xyz/v1/random';
+// Usamos un proxy para evitar problemas de CSP
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 
 async function fetchQuote() {
     console.log("Intentando obtener una cita..."); // Verificación de que se llama a la función
 
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(PROXY_URL + API_URL);
         console.log("Respuesta recibida:", response); // Mostrar la respuesta en consola
 
         if (!response.ok) {
